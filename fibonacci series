@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class EvenIndexFibonacciSum {
+    // Function to calculate the sum of Fibonacci numbers at even indices
+    public static long evenIndexFibonacciSum(int n) {
+        if (n <= 0)
+            return 0;
+
+        long a = 0, b = 1, sum = a;
+        for (int i = 1; i <= n; i++) {
+            long fib = a + b;
+            if (i % 2 == 0) {
+                sum += fib;
+            }
+            a = b;
+            b = fib;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the value of n: ");
+        int n = scanner.nextInt();
+        scanner.close();
+
+        long evenIndexSum = evenIndexFibonacciSum(n * 2); // Generate enough terms
+        System.out.println("Sum of Fibonacci numbers at even indices till " + n + "th term: " + evenIndexSum);
+    }
+}
