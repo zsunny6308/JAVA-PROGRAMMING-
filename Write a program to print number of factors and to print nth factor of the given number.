@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class FactorCalculator {
+
+    public static int countFactors(int num) {
+        int count = 0;
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int nthFactor(int num, int n) {
+        int count = 0;
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) {
+                count++;
+                if (count == n) {
+                    return i;
+                }
+            }
+        }
+        return -1; // Return -1 if nth factor doesn't exist
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Sample Input
+            System.out.print("Given Number: ");
+            int givenNumber = scanner.nextInt();
+
+            System.out.print("N = ");
+            int n = scanner.nextInt();
+
+            if (givenNumber <= 0 || n <= 0) {
+                System.out.println("Invalid input. Please enter positive integers.");
+                return;
+            }
+
+            // Calculate the number of factors
+            int factorsCount = countFactors(givenNumber);
+
+            // Print the number of factors
+            System.out.println("Number of factors = " + factorsCount);
+
+            // Print the nth factor if it exists
+            int nthFactorValue = nthFactor(givenNumber, n);
+            if (nthFactorValue != -1) {
+                System.out.println(n + "th factor of " + givenNumber + " = " + nthFactorValue);
+            } else {
+                System.out.println("The " + n + "th factor does not exist for the given number.");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: Invalid input. Please enter valid integers.");
+        } finally {
+            scanner.close();
+        }
+    }
+}
