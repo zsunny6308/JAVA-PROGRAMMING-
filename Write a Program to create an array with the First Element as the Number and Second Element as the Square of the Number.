@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class NumberAndSquareArray {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the number
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+
+        // Create an array with two elements: the number and its square
+        int[] numberAndSquare = new int[2];
+        numberAndSquare[0] = number;
+        numberAndSquare[1] = number * number;
+
+        // Print the array elements
+        System.out.println("Array with the First Element as the Number and Second Element as its Square:");
+        System.out.println("[" + numberAndSquare[0] + ", " + numberAndSquare[1] + "]");
+
+        scanner.close();
+    }
+}
