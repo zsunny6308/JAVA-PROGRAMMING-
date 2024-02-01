@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class ATMBalanceCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Constants for denominations
+        int[] denominations = {500, 100, 200, 2000};
+
+        // Arrays to store user input
+        int[] notes = new int[denominations.length];
+
+        // Get user input for denominations and notes
+        for (int i = 0; i < denominations.length; i++) {
+            System.out.print("Enter the " + (i + 1) + "st Denomination: ");
+            int denomination = scanner.nextInt();
+
+            // Validate the denomination
+            if (isValidDenomination(denomination, denominations)) {
+                System.out.print("Enter the " + (i + 1) + "st Denomination number of notes: ");
+                notes[i] = scanner.nextInt();
+            } else {
+                System.out.println("Invalid denomination. Please enter a valid denomination.");
+                i--; // Decrement i to re-enter the current denomination
+            }
+        }
+
+        // Calculate total balance
+        long totalBalance = calculateTotalBalance(denominations, notes);
+
+        // Print the total balance
+        System.out.println("Total Balance in ATM: " + totalBalance);
+
+        scanner.close();
+    }
+
+    // Function to check if the entered denomination is valid
+    private static boolean isValidDenomination(int denomination, int[] validDenominations) {
+        for (int validDenomination : validDenominations) {
+            if (denomination == validDenomination) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Function to calculate total balance
+    private static long calculateTotalBalance(int[] denominations, int[] notes) {
+        long totalBalance = 0;
+        for (int i = 0; i < denominations.length; i++) {
+            totalBalance += denominations[i] * notes[i];
+        }
+        return totalBalance;
+    }
+}
