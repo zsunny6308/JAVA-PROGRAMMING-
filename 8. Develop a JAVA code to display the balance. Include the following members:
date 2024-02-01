@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+class BankAccount {
+    private String depositorName;
+    private String accountNumber;
+    private String accountType;
+    private double balance;
+
+    public BankAccount(String depositorName, String accountNumber, String accountType) {
+        this.depositorName = depositorName;
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.balance = 10000.0; // Initial balance assumed to be 10000.0
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Amount " + amount + " deposited successfully.");
+        } else {
+            System.out.println("Invalid amount for deposit.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (balance - amount >= 500 && amount > 0) {
+            balance -= amount;
+            System.out.println("Amount " + amount + " withdrawn successfully.");
+        } else {
+            System.out.println("Insufficient balance or invalid amount for withdrawal.");
+        }
+    }
+
+    public void displayBalance() {
+        System.out.println("Balance: Rs. " + balance);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter depositor name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter account number: ");
+        String accountNumber = scanner.nextLine();
+
+        System.out.print("Enter account type (Savings/Current): ");
+        String accountType = scanner.nextLine();
+
+        BankAccount account = new BankAccount(name, accountNumber, accountType);
+
+        // Sample deposit and withdrawal
+        account.deposit(2000); // Deposit 2000
+        account.withdraw(1000); // Withdraw 1000
+
+        // Display balance
+        account.displayBalance();
+
+        scanner.close();
+    }
+}
