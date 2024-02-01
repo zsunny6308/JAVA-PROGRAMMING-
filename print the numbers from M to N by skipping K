@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class SkipNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the values of M, N, and K:");
+        int M = scanner.nextInt();
+        int N = scanner.nextInt();
+        int K = scanner.nextInt();
+
+        scanner.close();
+
+        StringBuilder output = new StringBuilder();
+
+        for (int i = M; i <= N; i += K + 1) {
+            output.append(i);
+            if (i != N) {
+                output.append(", ");
+            }
+        }
+
+        System.out.println("Output: " + output);
+    }
+}
