@@ -1,0 +1,38 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PerfectSquareAndSum {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter lower range: ");
+        int lower = input.nextInt();
+        System.out.print("Enter upper range: ");
+        int upper = input.nextInt();
+
+        List<Integer> result = new ArrayList<>();
+
+        for (int i = lower; i <= upper; i++) {
+            int square = i * i;
+            int sum = sumOfDigits(square);
+            if (isPerfectSquare(square) && sum < 10) {
+                result.add(square);
+            }
+        }
+
+        System.out.println(result);
+    }
+
+    // Function to check if a number is a perfect square
+    public static boolean isPerfectSquare(int num) {
+        int sqrt = (int) Math.sqrt(num);
+        return sqrt * sqrt == num;
+    }
+
+    // Function to calculate the sum of digits of a number
+    public static int sumOfDigits(int num) {
+        int sum = 0;
+        while (num > 0) {
+            sum += num % 10;
+            num /= 10;
