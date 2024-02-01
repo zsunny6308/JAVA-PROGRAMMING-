@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class NameSorter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+   ArrayList<String> names = new ArrayList<>();
+        System.out.println("Enter names (one per line, type 'done' to finish):");
+        String name = scanner.nextLine();
+        while (!name.equals("done")) {
+            names.add(name);
+            name = scanner.nextLine();
+        }
+System.out.print("Enter the sorting order (A for Ascending, D for Descending): ");
+        char order = scanner.next().charAt(0);
+        scanner.close();
+      if (order == 'A' || order == 'a') {
+            Collections.sort(names); // Ascending order
+        } else if (order == 'D' || order == 'd') {
+            Collections.sort(names, Collections.reverseOrder()); // Descending order
+        } else {
+            System.out.println("Invalid sorting order. Please enter 'A' or 'D'.");
+            return;
+        }
+     System.out.println("Sorted names:");
+        for (String sortedName : names) {
+            System.out.println(sortedName);
+        }
+    }
+}
