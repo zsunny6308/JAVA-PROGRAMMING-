@@ -1,0 +1,25 @@
+mport java.util.Scanner;
+
+public class UserNameValidation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the user name: ");
+        String userName = scanner.nextLine();
+
+        System.out.print("Reenter the user name: ");
+        String reenteredUserName = scanner.nextLine();
+
+        // Check if the user names are valid
+        if (isValidUserName(userName, reenteredUserName)) {
+            System.out.println("User name is valid.");
+        } else {
+            System.out.println("User name is invalid.");
+        }
+    }
+
+    private static boolean isValidUserName(String userName, String reenteredUserName) {
+        // Check if the user names match and meet the specified criteria
+        return userName.equals(reenteredUserName) && userName.matches("[a-zA-Z0-9@#$%^&+=_]*");
+    }
+}
