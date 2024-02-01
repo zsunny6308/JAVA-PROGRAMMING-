@@ -1,0 +1,45 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class UniquePermutations {
+
+    public static void main(String[] args) {
+        int givenNumber = 143;
+        System.out.println("Permutations are:");
+        printUniquePermutations(givenNumber);
+    }
+
+    public static void printUniquePermutations(int num) {
+        String str = String.valueOf(num);
+        int length = str.length();
+        char[] digits = str.toCharArray();
+        Set<String> set = new HashSet<>();
+
+        // Generate permutations recursively
+        generatePermutations(digits, length, set, 0);
+
+        // Print the unique permutations
+        for (String permutation : set) {
+            System.out.println(permutation);
+        }
+    }
+
+    public static void generatePermutations(char[] digits, int length, Set<String> set, int index) {
+        if (index == length - 1) {
+            set.add(new String(digits));
+            return;
+        }
+
+        for (int i = index; i < length; i++) {
+            swap(digits, index, i);
+            generatePermutations(digits, length, set, index + 1);
+            swap(digits, index, i);
+        }
+    }
+
+    public static void swap(char[] digits, int i, int j) {
+        char temp = digits[i];
+        digits[i] = digits[j];
+        digits[j] = temp;
+    }
+}
